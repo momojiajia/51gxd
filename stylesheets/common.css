@@ -1,0 +1,448 @@
+@charset "UTF-8";
+/*
+*======================================  网站全局导航  ======================================
+*
+*index页面为个性导的首页面
+*about为个人关于我的个人空间
+*setting是设置个性导的页面
+*
+*     css
+*common  放全局的重置
+*
+*_annotation为注释页面
+*main 放index页面css
+*about放about.html 页面的css
+*
+*
+*
+!！============================================= common样式导航 =============================================
+本页面包括三个部分  重置reset部分  公共基本样式common部分  公共样式部分public
+
+*
+!！============================================= about样式导航 =============================================
+本页面包括about.html页面的样式
+
+*
+!！============================================= user样式导航 =============================================
+本页面包括三个部分  重置reset部分  公共基本样式common部分  公共样式部分public
+***********************
+
+*!！============================================= public样式导航 =============================================
+本页面包括三个部分  重置reset部分  公共基本样式common部分  公共样式部分public
+***********************
+
+*
+*/
+/*
+!！============================================= common样式导航 =============================================
+本页面包括三个部分  重置reset部分  公共基本样式common部分  公共样式部分public
+***********************
+*reset
+*title
+*items1
+*items2
+*items3
+***********************
+*header
+*main
+*footer
+*/
+/*--- common ---*/
+/*----------------------------------------------  reset  ----------------------------------------------*/
+/* line 5, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/*----------------------------------------------  //reset  ----------------------------------------------*/
+/*----------------------------------------------  common  ----------------------------------------------*/
+/* line 26, ../sass/common.scss */
+body {
+  background-color: #f1f1f1;
+  position: relative;
+  font-family: 'microsoft yahei';
+  font-size: 15px;
+}
+
+/* line 33, ../sass/common.scss */
+img {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* line 39, ../sass/common.scss */
+a {
+  text-decoration: none !important;
+  color: #333;
+  /* @include link-colors($this,$hover,$active,$visited,$focus);*/
+}
+/* line 18, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:visited {
+  color: #333;
+}
+/* line 21, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:focus {
+  color: #333;
+}
+/* line 24, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:hover {
+  color: #15a14e;
+}
+/* line 27, D:/Ruby/Ruby23/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:active {
+  color: #333;
+}
+
+/* line 46, ../sass/common.scss */
+li {
+  list-style: none;
+}
+
+/* line 49, ../sass/common.scss */
+button:focus, input:focus {
+  outline: none;
+}
+
+/* line 53, ../sass/common.scss */
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #15a14e;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* line 58, ../sass/common.scss */
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #15a14e;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* line 63, ../sass/common.scss */
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #15a14e;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* line 68, ../sass/common.scss */
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: #15a14e;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* line 74, ../sass/common.scss */
+.clear {
+  zoom: 1;
+}
+/* line 76, ../sass/common.scss */
+.clear:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+/* line 82, ../sass/common.scss */
+.fl {
+  float: left;
+}
+
+/* line 85, ../sass/common.scss */
+.fr {
+  float: right;
+}
+
+/* line 88, ../sass/common.scss */
+.w1080 {
+  width: 1080px;
+}
+
+/*----------------------------------------------  //common  ----------------------------------------------*/
+/*----------------------------------------------  public  ----------------------------------------------*/
+/*=====================  //index common  =====================*/
+/* line 102, ../sass/common.scss */
+.actGotop {
+  position: fixed;
+  _position: absolute;
+  bottom: 80px;
+  right: 50px;
+  width: 47px;
+  height: 44px;
+  display: none;
+}
+/* line 110, ../sass/common.scss */
+.actGotop a:link, .actGotop a {
+  width: 47px;
+  height: 78px;
+  display: inline-block;
+  background: url(../images/icon/top.png) no-repeat;
+  outline: none;
+  opacity: 0.8;
+}
+/* line 118, ../sass/common.scss */
+.actGotop a {
+  position: absolute;
+  animation: fadeinT 1s infinite;
+}
+/* line 123, ../sass/common.scss */
+.actGotop a:hover {
+  opacity: 1;
+}
+
+@-webkit-keyframes fadeinT {
+  0% {
+    top: 10px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@media print, screen and (max-width: 830px) {
+  /* line 136, ../sass/common.scss */
+  .actGotop {
+    right: 10px;
+    bottom: 10px;
+  }
+}
+/*=====================  //index common  =====================*/
+/*=====================  //about common  =====================*/
+/*-- title --*/
+/*欢迎部分title*/
+/* line 146, ../sass/common.scss */
+h1.title {
+  text-align: center;
+  color: #fff;
+  font-size: 4rem;
+  line-height: 10rem;
+}
+
+/*各导航主title*/
+/* line 155, ../sass/common.scss */
+h2.title {
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  line-height: 74px;
+}
+
+/*小右上角title 必须搭配footer的背景图片使用*/
+/* line 163, ../sass/common.scss */
+h3.title {
+  color: #fff;
+  font-size: 24px;
+  width: 140px;
+  position: absolute;
+  left: 69%;
+  margin-top: 85px;
+  -moz-transform: rotate(12deg);
+  -ms-transform: rotate(12deg);
+  -webkit-transform: rotate(12deg);
+  transform: rotate(12deg);
+}
+
+/*小左上角title 必须搭配item3的背景图片使用*/
+/* line 173, ../sass/common.scss */
+h3.title2 {
+  color: #fff;
+  font-size: 24px;
+  width: 140px;
+  position: absolute;
+  left: 25%;
+  margin-top: 50px;
+  -moz-transform: rotate(-12deg);
+  -ms-transform: rotate(-12deg);
+  -webkit-transform: rotate(-12deg);
+  transform: rotate(-12deg);
+}
+
+/*-- //title --*/
+/* line 186, ../sass/common.scss */
+.contain {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* line 193, ../sass/common.scss */
+.progress {
+  /*进度前的小title*/
+  overflow: hidden;
+  width: 800px;
+  margin: 40px auto;
+}
+/* line 199, ../sass/common.scss */
+.progress span {
+  float: right;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 10px;
+}
+/* line 205, ../sass/common.scss */
+h5.title {
+  float: left;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
+  vertical-align: middle;
+  line-height: 20px;
+  height: 20px;
+  width: 160px;
+  text-align: right;
+}
+/* line 217, ../sass/common.scss */
+.progress_box {
+  float: left;
+  width: 580px;
+  height: 20px;
+  background: #072a2c;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 225, ../sass/common.scss */
+.progress_box .line {
+  width: 0%;
+  height: 20px;
+  background: #fc5756;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* line 234, ../sass/common.scss */
+.know_more {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  background: #0ca873;
+  color: #fff;
+  border: 1px solid  #088c59;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 245, ../sass/common.scss */
+.know_more:hover, .know_more:active {
+  -moz-box-shadow: 0 0 8px #088c59;
+  -webkit-box-shadow: 0 0 8px #088c59;
+  box-shadow: 0 0 8px #088c59;
+}
+
+/*=====================  //about common  =====================*/
+/*----------------------------------------------  //public  ----------------------------------------------*/
+/*
+
+.container{
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.header{
+  height: 64px;
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 0 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04)
+}
+
+.content-wrap {
+  width: 100%;
+  float: left;
+}
+.content {
+  position: relative;
+  min-height: 500px;
+padding: 20px;
+
+  margin-right: 375px;
+  background-color: #fff;
+  margin-bottom: 15px;
+}
+.sidebar {
+  float: left;
+  margin-left: -360px;
+  width: 360px;
+  position: relative;
+}
+
+.single .content{
+  padding: 0 25px;
+}
+.single .content::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top: 20px solid #ECF0F1;
+  border-left: 20px solid transparent;
+}
+
+*/
+
+/*# sourceMappingURL=common.css.map */

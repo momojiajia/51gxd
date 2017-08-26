@@ -1,0 +1,310 @@
+@import "_annotation";
+/*
+!！============================================= common样式导航 =============================================
+本页面包括三个部分  重置reset部分  公共基本样式common部分  公共样式部分public
+***********************
+*reset
+*title
+*items1
+*items2
+*items3
+***********************
+*header
+*main
+*footer
+*/
+/*--- common ---*/
+@import "color";
+@import "mixin";
+@import "compass";
+@import "compass/typography/links";
+/*----------------------------------------------  reset  ----------------------------------------------*/
+@import "compass/reset";
+/*----------------------------------------------  //reset  ----------------------------------------------*/
+
+/*----------------------------------------------  common  ----------------------------------------------*/
+body{
+  background-color: #f1f1f1;
+  position: relative;
+  font-family: 'microsoft yahei';
+  font-size: 15px;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+a{
+  text-decoration: none!important;
+  @include link-colors($text-color,$background-low-color,$text-color,$text-color,$text-color);
+  /* @include link-colors($this,$hover,$active,$visited,$focus);*/
+  //  @include link-colors(red,green,blue,yellow,white);
+}
+
+li{
+  list-style: none;
+}
+button:focus,input:focus{
+  outline: none;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: $background-low-color;
+  font-size: 0.9rem;
+  opacity: 0.6
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color:$background-low-color;
+  font-size: 0.9rem;
+  opacity: 0.6
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color:$background-low-color;
+  font-size: 0.9rem;
+  opacity: 0.6
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color:$background-low-color;
+  font-size: 0.9rem;
+  opacity: 0.6
+}
+
+.clear{
+  zoom: 1;
+  &:after{
+    content: '';
+    clear: both;
+    display: block;
+  }
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.w1080{
+  width: 1080px;
+}
+
+
+/*----------------------------------------------  //common  ----------------------------------------------*/
+
+/*----------------------------------------------  public  ----------------------------------------------*/
+
+/*=====================  //index common  =====================*/
+//$goback : url("../images/icon/goback.png") no-repeat 8px center;
+
+
+//导航页返回顶部
+.actGotop {
+  position: fixed;
+  _position: absolute;
+  bottom: 80px;
+  right: 50px;
+  width: 47px;
+  height: 44px;
+  display: none;
+  a:link{
+    width: 47px;
+    height: 78px;
+    display: inline-block;
+    background: url(../images/icon/top.png) no-repeat;
+    outline: none;
+    opacity: 0.8;
+  }
+  a{
+    @extend a:link;
+    position: absolute;
+    animation: fadeinT 1s infinite;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+}
+
+
+@-webkit-keyframes fadeinT{
+  0%{top:10px}
+  100%{top:0}
+}
+
+@media print, screen and (max-width: 830px) {
+  .actGotop {
+    right: 10px;
+    bottom: 10px;
+  }
+
+}
+/*=====================  //index common  =====================*/
+/*=====================  //about common  =====================*/
+/*-- title --*/
+/*欢迎部分title*/
+h1.title{
+  text-align: center;
+  color: #fff;
+  //  font-size: 48px;
+  //  line-height: 200px;
+  font-size: 4rem;
+  line-height: 10rem;
+}
+/*各导航主title*/
+h2.title{
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  line-height: 74px;
+}
+
+/*小右上角title 必须搭配footer的背景图片使用*/
+h3.title{
+  color: #fff;
+  font-size: 24px;
+  width: 140px;
+  position: absolute;
+  left: 69%;
+  margin-top: 85px;
+  @include rotate(12deg)
+}
+/*小左上角title 必须搭配item3的背景图片使用*/
+h3.title2{
+  color: #fff;
+  font-size: 24px;
+  width: 140px;
+  position: absolute;
+  left: 25%;
+  margin-top: 50px;
+  @include rotate(-12deg)
+}
+
+/*-- //title --*/
+
+//框
+.contain{
+  width: 1200px;
+  //  height: 300px;
+  margin: 0 auto;
+};
+
+//进度
+.progress{
+  /*进度前的小title*/
+  //  border: 1px solid red;
+  overflow: hidden;
+  width: 800px;
+  margin: 40px auto;
+  span{
+    float: right;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 10px;
+  }
+  @at-root h5.title{
+    float: left;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+    vertical-align: middle;
+    line-height: 20px;
+    height: 20px;
+    width: 160px;
+    text-align: right;
+  }
+  @at-root .progress_box{
+    //  border: 1px solid red;
+    float: left;
+    width:580px;
+    height: 20px;
+
+    background: $green1;
+    @include border-radius(10px);
+    .line{
+      width: 0%;
+      height: 20px;
+      background: #fc5756;
+      @include border-radius(10px);
+    }
+  }
+}
+
+.know_more{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  background: #0ca873;
+  color: #fff;
+  border: 1px solid  #088c59;
+  @include border-radius(5px);
+  &:hover, &:active{
+    @include box-shadow(0 0 8px #088c59);
+  }
+}
+
+/*=====================  //about common  =====================*/
+
+/*----------------------------------------------  //public  ----------------------------------------------*/
+
+
+
+
+
+/*
+
+.container{
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.header{
+  height: 64px;
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 0 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04)
+}
+
+.content-wrap {
+  width: 100%;
+  float: left;
+}
+.content {
+  position: relative;
+  min-height: 500px;
+padding: 20px;
+
+  margin-right: 375px;
+  background-color: #fff;
+  margin-bottom: 15px;
+}
+.sidebar {
+  float: left;
+  margin-left: -360px;
+  width: 360px;
+  position: relative;
+}
+
+.single .content{
+  padding: 0 25px;
+}
+.single .content::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top: 20px solid #ECF0F1;
+  border-left: 20px solid transparent;
+}
+
+*/
+
+
+

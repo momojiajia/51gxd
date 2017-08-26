@@ -1,0 +1,31 @@
+
+
+@import "color";
+@import "mixin";
+
+/*----------------------------------  user ----------------------------------*/
+.user_opc {
+  //  width: 100%;
+  border-right: 1px solid $background-deep-color;
+  height: 100%;
+  ul{
+    margin-top: 10px;
+    li{
+      text-align: center;
+      //      border: 1px solid red;
+      width: 100%;
+      @include height(40px);
+      border-bottom: 1px solid $gray;
+    }
+  }
+  >.btn{
+    width: 100%;
+    margin: 40px auto 0;
+  }
+
+}
+.user_main{
+  // border: 1px solid red;
+  height: 100%;
+}
+/*----------------------------------  //user ----------------------------------*/

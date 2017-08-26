@@ -1,0 +1,65 @@
+/*----------------------------------  setting  ----------------------------------*/
+/* line 7, ../sass/setting.scss */
+.gxd_main {
+  min-height: 75vh;
+  box-shadow: 0px 3px 7px #dddddd;
+  margin-bottom: 20px;
+}
+/* line 14, ../sass/setting.scss */
+#set_contain .set_title {
+  padding: 10px 0;
+}
+/* line 19, ../sass/setting.scss */
+#set_contain .set_title .search .btn-group button {
+  background: none;
+  border: 1px solid #dddddd;
+}
+/* line 26, ../sass/setting.scss */
+#set_contain .set_title .label {
+  color: #333;
+}
+/* line 35, ../sass/setting.scss */
+.link_list {
+  padding: 5px 0;
+  border-top: 1px dashed #dddddd;
+  line-height: 36px;
+}
+/* line 39, ../sass/setting.scss */
+.link_list:first-child {
+  border: none;
+}
+/* line 42, ../sass/setting.scss */
+.link_list .link_title {
+  display: inline-block;
+  width: 12%;
+  padding: 0 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #178443;
+}
+/* line 51, ../sass/setting.scss */
+.link_list .link_content {
+  width: 75%;
+  display: inline-block;
+}
+/* line 54, ../sass/setting.scss */
+.link_list .link_content > div {
+  margin: 0 10px;
+}
+/* line 56, ../sass/setting.scss */
+.link_list .link_content > div > a {
+  margin: 0 10px;
+}
+/* line 61, ../sass/setting.scss */
+.link_list > div.btn-group {
+  width: 12%;
+  line-height: 40px;
+}
+/* line 69, ../sass/setting.scss */
+.modal-content {
+  padding: 20px;
+}
+
+/*----------------------------------  //setting ----------------------------------*/
+
+/*# sourceMappingURL=setting.css.map */

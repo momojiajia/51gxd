@@ -1,0 +1,538 @@
+/*
+!！============================================= about样式导航 =============================================
+本页面包括about.html页面的样式
+
+*/
+/*--------------  about页面scss  --------------*/
+/*
+***********************
+*reset
+*title
+*items1
+*items2
+*items3
+***********************
+*header
+*main
+*footer
+*/
+/*--- common ---*/
+
+@import "color";
+@import "compass";
+@import "compass/layout";
+
+
+
+body {
+  //  background: image_url('image/bg.jpg',false);
+  //  background: url('../img/image/bg.jpg');
+  background-size: 100% auto;
+  //  height: 5000px;
+  background: $green1;
+  letter-spacing: 0.5px;
+  font-family: "Microsoft YaHei",arial, helvetica, sans-serif;
+  position: relative;
+  font-size: 14px;
+  @media (max-width: 960px) {
+    font-size: 12px;
+  }
+  @media (max-width: 840px) {
+    font-size: 10px;
+  }
+  @media (max-width: 720px) {
+    font-size: 8px;
+  }
+  @media (max-width: 480px) {
+    font-size: 8px;
+  }
+}
+/*-------------------------------------------- about --------------------------------------------*/
+/*---------------------- image ----------------------*/
+@each $name in header,items1,items2,blackboard,list,wbg{
+  @if $name == header {
+    ##{$name}{
+      background: image_url('bg/#{$name}_bg.png') no-repeat;
+      background-size: 100% auto;
+    }
+  }
+  @else{
+    .#{$name}{
+      background: image_url('bg/#{$name}.png') no-repeat;
+      background-size: 100% auto;
+    }
+  }
+}
+
+//白色底的背景
+.wbg {
+    background: image_url('icon/wbg.png') repeat;
+    //      background-size: 100% auto;
+    position: relative;
+    z-index: 0;
+    &:before{
+      width: 100%;
+      height: 100%;
+      display: block;
+      content: '';
+      position: absolute;
+      top:0;
+      left: 0;
+      background: image_url('bg/footer_bg.png') no-repeat;
+      background-size: 100% auto;
+      z-index:0;
+    }
+  }
+/*---------------------- //image ----------------------*/
+
+/*-- header --*/
+#header{
+  position: relative;
+  //  height: 100vh;
+  height: 640px;
+  padding-top: 80px;
+  //学生背景
+  @at-root .student{
+    //    border: 1px solid red;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    //    text-align: center;
+    img{
+      //      border: 1px solid red;
+      display: block;
+      margin: 0 auto;
+      width: 400px;
+    }
+  }
+  //黑板背景
+  @at-root .blackboard{
+    position: relative;
+    z-index: 7;
+    //    border: 1px solid red;
+    height: 322px;
+    width: 80%;
+    margin: -34px auto;
+  //描述文字
+  @at-root .description{
+    color: #fff;
+    text-align: right;
+    padding: 0 100px;
+    font-size: 20px;
+    line-height: 36px;
+    span{
+      display: block;
+      text-align: right;
+
+    }
+  }
+
+  }
+}
+/*-- //header --*/
+
+
+/*-- nav --*/
+#nav{
+//  position: fixed;
+  position: absolute;
+  top:600px;
+  z-index: 999;
+//  top:0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #e8e8e8;
+  @include box-shadow(0 5px 5px #c7c7c7);
+  //粘贴前样式
+  ul{
+    padding: 0 100px;
+    display: block;
+//    width: 100%;
+//    @include horizontal-list();
+    li{
+      width: 20%;
+      text-align: center;
+      height: inherit;
+      line-height: inherit;
+      font-size: 24px;
+//      border: 1px solid red;
+      &.me{
+
+        img{
+          margin: 0 auto;
+          display: block;
+          width: 80px;
+          height: 80px;
+//          border: 1px solid red;
+          border-radius: 50%;
+          @include box-shadow(0 0px 3px #e5dd06);
+        }
+
+      }
+
+      a{
+        display: inline-block;
+        width:100%;
+        text-align: inherit;
+        line-height: inherit;
+        font-size: inherit;
+        color: #333;
+//        margin-top: 25px;
+      }
+      &:hover{
+        @include transition(all 1s ease 0s);
+        a{
+//          background: #fafafa;
+        }
+      }
+    }
+  }
+  //粘贴后样式
+  &.fixed{
+    position: fixed;
+    top: 0;
+    height: 80px;
+    li{
+      height: 80px;
+      line-height: 80px;
+    }
+    li.me{
+      img{
+        margin: 20px auto;
+        width: 100px;
+        height: 100px;
+      }
+      &:hover{
+        @include transition(all 1s ease 0s);
+        a{
+          margin-top: 10px;
+        }
+      }
+
+    }
+  }
+
+}
+/*-- //nav --*/
+
+/*-- main --*/
+#main{
+  width: 1200px;
+  margin: 0 auto;
+
+  @at-root .items1{
+    height: 750px;
+    @at-root p.text{
+      padding: 20px 0;
+      font-size: 14px;
+      color: #333;
+      width: 800px;
+      margin: 0 auto;
+      line-height: 24px;
+      text-indent: 30px;
+    }
+  }
+  @at-root .items2{
+    height: 1280px;
+    background-position: 90px 0;
+    background-size: 100% auto;
+
+    @at-root #production{
+      @at-root .list{
+        height: 270px;
+        width: 640px;
+        margin: 20px auto;
+        padding: 20px;
+        overflow: hidden;
+        .l_section{
+          float: left;
+          $l_section_w:260px;
+          width: $l_section_w;
+          height: $l_section_w;
+//          border: 1px solid red;
+          position: relative;
+          a{
+            width: 100%;
+            height: 100%;
+            @include inline-block();
+            &:before{
+              content: '';
+              width: 100%;
+              height: 100%;
+              @include inline-block();
+              position: absolute;
+              top:0;
+              left: 0;
+              @include background(rgba(8,42,44,0));
+            }
+            &:after{
+              content: '';
+              position: absolute;
+              top: 10%;
+              left: 10%;
+              width: 80%;
+              height: 80%;
+              border: 1px solid #fff;
+              @include opacity(0);
+            }
+            &:hover{
+              &:before{
+                @include transition(all 0.5s ease 0s);
+                @include background(rgba(8,42,44,0.3));
+              }
+              span{
+                @include transition(all 0.6s ease 0s);
+                @include opacity(1);
+              }
+              &:after{
+                @include transition(all 1s ease 0s);
+                @include opacity(1);
+              }
+            }
+
+          }
+          span{
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            width: 60%;
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+//            border: 1px solid red;
+            @include opacity(0);
+            @include inline-block();
+          }
+
+        }
+        .l_side{
+          float: left;
+          width: 350px;
+          padding: 20px 10px;
+          max-height: 218px;
+          overflow: hidden;
+          @at-root h6.title{
+            line-height:2rem;
+            margin-bottom: 10px;
+            text-align: center;
+            font:{
+              size: 1.2rem;
+              weight: 600;
+            }
+          }
+          p{
+            i{
+              font-weight: 600;
+              font-size: 0.8rem;
+              margin: 0 5px;
+              @include inline-block();
+            }
+            b{
+              width: 110px;
+              text-align: right;
+              @include inline-block();
+              font-weight: 600;
+              font-size: 0.9rem;
+              vertical-align: top;
+            }
+            font-size: 0.9rem;
+            line-height: 1.5rem;
+            span{
+              width: 240px;
+              @include inline-block();
+            }
+          }
+
+        }
+      }
+    }
+
+    @at-root .experience{
+
+      .contain{
+        height: 800px;
+        width: 800px;
+        .eduction{}
+        .work{
+          margin-top: 30px;
+        }
+        @at-root .exp{
+          position: relative;
+//          margin-top: 10px;
+          //此处使用progress部分title
+          h5.title{
+            width: 100%;
+            text-align: center;
+            float: none;
+            margin: 10px 0;
+          }
+          .exp_line{
+            width: 4px;
+            height: 90%;
+            background: hsl(0,0,80%);
+            position: absolute;
+            left:10%;
+          }
+          .exp_list{
+            margin: 20px 0 20px 14%;
+            $dot:20px;
+            &:before{
+              content: '';
+              background: hsl(0,0,80%);
+              position: absolute;
+              left: 9%;
+              width: $dot;
+              height: $dot;
+              @include inline-block();
+              @include border-radius(50%);
+            }
+            .tips{
+              font-size: 0.8rem;
+              b{
+                font-size: 1rem;
+                font-weight: 800;
+                margin: 0 10px;
+              }
+            }
+            .exp_main{
+              margin-top: 14px;
+              .tips2{
+                font-size: 0.9rem;
+                font-weight: 600;
+              }
+              ol{
+                margin: 14px 0 0 14px;
+                li{
+                  font-size: 1rem;
+                  height: 2rem;
+                  line-height: 2rem;
+                }
+              }
+              ul{
+                overflow: hidden;
+                position: relative;
+                margin: 20px;
+                li{
+                  width: 100px;
+                  height: 100px;
+                  margin: 0 20px;
+                  border: 1px solid hsl(0,0,80%);
+                  float: left;
+//                  @include transition(all 1s ease 0s);
+                  p{
+                    font-size: 0.9rem;
+                    height: 1.5rem;
+                    line-height: 1.5rem;
+                    position: absolute;
+                    bottom:-1.5rem;
+                    width: inherit;
+                    text-align: center;
+                    color: #fff;
+                    @include background(rgba(0,0,0,0.5));
+                  }
+                  &:hover{
+                    p{
+                      @include transition(all 0.5s ease 0s);
+                      bottom:0;
+                    }
+                  }
+
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+  }
+  @at-root .item3{
+    height: 656px;
+    margin-bottom: 80px;
+//    border: 1px solid red;
+
+    &.wbg{
+      &:before{
+        background: image_url('image/item3.png') no-repeat;
+        background-size: 100% auto;
+        //      z-index: 0;
+      }
+    }
+    p.about_text{
+      position: relative;
+      z-index: 5;
+      font-size: 16px;
+      line-height: 32px;
+//      text-indent: 20px;
+      color: #e3e3e3;
+      width: 500px;
+      margin:0 auto;
+      padding-top: 100px;
+//      border: 1px solid red;
+    }
+    .links{
+//      border: 1px solid red;
+      z-index: 9;
+      position: relative;
+      padding: 10px 30% 0;
+      h6.title{
+        color: #fff;
+      }
+      li{
+        color: #fff;
+        line-height: 24px;
+        font-weight: 600;
+        font-size: 1rem;
+        a{
+          color: #fff;
+          font-weight: normal;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+/*-- //main --*/
+
+/*-- footer --*/
+#footer{
+  height: 600px;
+  ul{
+    padding-top: 200px;
+    width: 600px;
+    margin:0 auto;
+    position: relative;
+    z-index: 5;
+    li{
+      line-height: 36px;
+      color: #fff;
+    }
+  }
+
+}
+/*-- //footer --*/
+/*-- back --*/
+#back{
+  position: absolute;
+  bottom: 40px;
+//  margin-bottom: 20px;
+  display: block;
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+  text-align: center;
+//  border: 1px solid red;
+  color: #fff;
+  &:hover{
+    color: #fc5756;
+  }
+}
+/*-- //back --*/
+
+/*-------------------------------------------- //about --------------------------------------------*/

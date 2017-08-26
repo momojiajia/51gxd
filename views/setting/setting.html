@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>个性导--个性导航</title>
+    <link rel="icon" href="../img/icon/icon.ico"/>
+    <!--<link rel="stylesheet" id="_bootstrap-css" href="css/bootstrap.css" type="text/css" media="all">-->
+
+    <!--plugin css-->
+    <link href="../bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <!--//plugin css-->
+
+    <!--custom css-->
+    <link rel="stylesheet" href="../stylesheets/common.css"/>
+    <link rel="stylesheet" href="../stylesheets/setting.css"/>
+    <!--//custom css-->
+
+
+    <!--<link href="./navigator_files/validate.css" type="text/css" rel="stylesheet">-->
+    <!--<link href="./navigator_files/default.css" type="text/css" rel="stylesheet">-->
+    <script src="../js/hm.js"></script>
+    <script src="./navigator_files/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+
+
+    <script src="../js/angular.min.js"></script>
+
+</head>
+
+<body ng-app="">
+
+<!--main-->
+<div class="container">
+
+
+
+<!--头部开始-->
+<div ng-include="'../public/header.html'"></div>
+
+<!--[if lt IE 8]>
+<div class="pull-left col-sm-12" style="text-align:center;">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span
+        aria-hidden="true">&times;</span><span
+        class="sr-only">Close</span></button>
+        本站未针对 Internet Explorer 8 以下版本浏览器进行兼容性测试，所以使用 Internet Explorer 8 以下浏览器可能会影响体验
+    </div>
+</div>
+<![endif]-->
+
+
+<!--主体部分-->
+<div class="gxd_main">
+<section id="set_main">
+
+<div id="message" style="display:block; text-align:center;">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">close</span></button>
+        <span id="content"></span>
+    </div>
+</div>
+
+<div id="set_contain" class="col-sm-12 u_navigator">
+    <div class="set_title clear">
+        <!--搜索设置-->
+        <div class="search fl">
+            <span class="label">搜索引擎：</span>
+            <div class="btn-group">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span id="search_engine">百度</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+
+                    <li><a href="javascript:void(0);" onclick="changeSearchEngine(&#39;baidu&#39;, &#39;百度&#39;)">百度</a>
+                    </li>
+
+                    <li><a href="javascript:void(0);" onclick="changeSearchEngine(&#39;google&#39;, &#39;Google&#39;)">Google</a>
+                    </li>
+
+                    <li><a href="javascript:void(0);" onclick="changeSearchEngine(&#39;360&#39;, &#39;360&#39;)">360</a>
+                    </li>
+
+                    <li><a href="javascript:void(0);" onclick="changeSearchEngine(&#39;sogou&#39;, &#39;搜狗&#39;)">搜狗</a>
+                    </li>
+
+                    <li><a href="javascript:void(0);" onclick="changeSearchEngine(&#39;weixin&#39;, &#39;微信文章&#39;)">微信文章</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function changeSearchEngine(engine, name) {
+                $.post("/u/navigator/search_engine", {engine: engine}, function (data) {
+                    console.log(JSON.stringify(data));
+                });
+                $("#search_engine").text(name);
+            }
+        </script>
+        <!--排序-->
+        <div class="search fl">
+            <span class="label">排序方式：</span>
+            <div class="btn-group">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span id="sort_order">使用频率</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+
+                    <li><a href="javascript:void(0);" onclick="changeSortOrder(&#39;pinyin&#39;)">拼音排序</a></li>
+
+                    <li><a href="javascript:void(0);" onclick="changeSortOrder(&#39;usage&#39;)">使用频率</a></li>
+
+                    <li><a href="javascript:void(0);" onclick="changeSortOrder(&#39;priority&#39;)">默认排序</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function changeSortOrder(order) {
+                $.post("/u/navigator/sort_order", {order: order}, function (data) {
+                    if (data.code == 0) {
+                        window.location.reload();
+                    } else {
+                        $msg.show();
+                        $msg.find("#content").text(data.msg);
+                    }
+                });
+            }
+        </script>
+        <!--保存更新添加分类-->
+        <div class="fr" style="padding-bottom: 15px;">
+            <button type="button" class="btn btn-success" onclick="navigator_update();">保存</button>
+            <button type="button" class="btn btn-primary" onclick="create_catalog(&#39;&#39;,&#39;&#39;);">添加分类</button>
+        </div>
+    </div>
+
+
+
+    <!--子栏目-->
+    <div class="row catalog action">
+        <div class="link_list clear">
+            <a href="#" tabindex="0" class="link_title catalog-menu fl" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;411&#39; class=&#39;catalog-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;411&#39; title=&#39;3&#39; class=&#39;catalog-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">我的常用</a>
+
+            <div class="link_content fl">
+                <div class="pull-left">
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">阿里妈妈图表库</a>
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">百度</a>
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">博客园</a>
+
+                </div>
+
+            </div>
+
+            <div class="btn-group fr">
+                <button type="button" class="btn btn-link link_action" title="添加链接" onclick="create_link(&#39;&#39;, &#39;411&#39;, &#39;&#39;, &#39;&#39;);"><span class="glyphicon glyphicon-plus"></span></button>
+
+                <button type="button" class="btn btn-link link_action" title="向下移动" onclick="down_catalog(&#39;411&#39;);"><span class="glyphicon glyphicon-arrow-down"></span></button>
+
+                <button type="button" class="btn btn-link link_action" title="向上移动" onclick="up_catalog(&#39;411&#39;);"><span class="glyphicon glyphicon-arrow-up"></span></button>
+
+            </div>
+
+        </div>
+        <div class="link_list clear">
+            <a href="#" tabindex="0" class="link_title catalog-menu fl" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;411&#39; class=&#39;catalog-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;411&#39; title=&#39;3&#39; class=&#39;catalog-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">夏天的花儿</a>
+
+            <div class="link_content fl">
+                <div class="pull-left">
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">站酷</a>
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">百度</a>
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">博客园</a>
+
+                </div>
+
+            </div>
+            <div class="btn-group fr">
+                <button type="button" class="btn btn-link link_action" title="添加链接" onclick="create_link(&#39;&#39;, &#39;411&#39;, &#39;&#39;, &#39;&#39;);"><span class="glyphicon glyphicon-plus"></span></button>
+
+                <button type="button" class="btn btn-link link_action" title="向下移动" onclick="down_catalog(&#39;411&#39;);"><span class="glyphicon glyphicon-arrow-down"></span></button>
+
+                <button type="button" class="btn btn-link link_action" title="向上移动" onclick="up_catalog(&#39;411&#39;);"><span class="glyphicon glyphicon-arrow-up"></span></button>
+
+            </div>
+
+        </div>
+        <div class="link_list clear">
+            <a href="#" tabindex="0" class="link_title catalog-menu fl" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;411&#39; class=&#39;catalog-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;411&#39; title=&#39;3&#39; class=&#39;catalog-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">我喜欢的名</a>
+
+            <div class="link_content fl">
+                <div class="pull-left">
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">站酷</a>
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">百度</a>
+                    <a href="#" tabindex="0" class="link link-menu" data-html="true" role="button" data-placement="top" data-toggle="popover" data-trigger="manual" data-content="&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-delete btn btn-link&#39; title=&#39;删除&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-trash&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; name=&#39;阿里妈妈图表库&#39; catalog=&#39;411&#39; url=&#39;http://www.iconfont.cn/&#39; class=&#39;link-modify btn btn-link&#39; title=&#39;编辑&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-edit&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-top btn btn-link&#39; title=&#39;置顶&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-cloud-upload&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-up btn btn-link&#39; title=&#39;向上移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-up&#39;&gt;&lt;/span&gt;&lt;/a&gt;&lt;a href=&#39;#&#39; id=&#39;1187&#39; class=&#39;link-down btn btn-link&#39; title=&#39;向下移动&#39;&gt;&lt;span class=&#39;glyphicon glyphicon-arrow-down&#39;&gt;&lt;/span&gt;&lt;/a&gt;" data-original-title="" title="">博客园</a>
+
+                </div>
+
+            </div>
+            <div class="btn-group fr">
+                <button type="button" class="btn btn-link link_action" title="添加链接" onclick="create_link(&#39;&#39;, &#39;411&#39;, &#39;&#39;, &#39;&#39;);"><span class="glyphicon glyphicon-plus"></span></button>
+
+                <button type="button" class="btn btn-link link_action" title="向下移动" onclick="down_catalog(&#39;411&#39;);"><span class="glyphicon glyphicon-arrow-down"></span></button>
+
+                <button type="button" class="btn btn-link link_action" title="向上移动" onclick="up_catalog(&#39;411&#39;);"><span class="glyphicon glyphicon-arrow-up"></span></button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--添加分类-->
+<div class="form modal fade" id="create_catalog_dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;添加分类
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+                    <input type="hidden" id="catalog_id" name="catalog_id">
+                    <div class="form-group">
+                        <label class="pull-left control-label">名称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="catalog_title" name="catalog_title" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a onclick="_create_catalog_request()" class="btn btn-primary">确认</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加链接-->
+<div class="form modal fade" id="create_link_dialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;添加链接
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+                    <input type="hidden" id="link_catalog_id" name="link_catalog_id">
+                    <input type="hidden" id="link_id" name="link_id">
+                    <div class="form-group">
+                        <label class="pull-left control-label">名称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="link_name" name="link_name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="pull-left control-label">链接:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="link_url" name="link_url" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a onclick="_create_link_request()" class="btn btn-primary">确认</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--确认删除-->
+<div class="modal fade" id="_delete_catalog_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;系统提示
+                </h4>
+            </div>
+            <div class="modal-body">
+                确认要删除吗?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <a id="_delete_catalog_request" class="btn btn-primary">确认</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+$(function () {
+    $(".catalog-menu").popover().on("mouseenter", function () {
+        var _this = this;
+        $(this).popover("show");
+        $(".popover").on("mouseleave", function () {
+            $(_this).popover('hide');
+        });
+
+        $(".catalog-modify").on('click', function () {
+            create_catalog($(this).attr("id"), $(this).attr("title"));
+        });
+        $(".catalog-delete").on('click', function () {
+            delete_catalog($(this).attr("id"))
+        });
+    }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide");
+            }
+        }, 300);
+    });
+    $(".link-menu").popover({trigger: "manual", html: true, animation: false}).on("mouseenter", function () {
+        var _this = this;
+        $(this).popover("show");
+        $(".popover").on("mouseleave", function () {
+            $(_this).popover('hide');
+        });
+        $(".link-up").on('click', function () {
+            up_link($(this).attr("id"));
+        });
+        $(".link-down").on('click', function () {
+            down_link($(this).attr("id"))
+        });
+        $(".link-top").on('click', function () {
+            top_link($(this).attr("id"))
+        });
+        $(".link-modify").on('click', function () {
+            create_link($(this).attr("id"), $(this).attr("catalog"), $(this).attr("name"), $(this).attr("url"))
+        });
+        $(".link-delete").on('click', function () {
+            delete_link($(this).attr("id"))
+        });
+    }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide");
+            }
+        }, 300);
+    });
+});
+
+var $msg = $("#message");
+
+function delete_link(linkId) {
+    $msg.hide();
+    $.post("/u/navigator/link/delete", {
+        id: linkId
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+function up_link(linkId) {
+    $msg.hide();
+    $.post("/u/navigator/link/up", {
+        id: linkId
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+function down_link(linkId) {
+    $msg.hide();
+    $.post("/u/navigator/link/down", {
+        id: linkId
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+function top_link(linkId) {
+    $msg.hide();
+    $.post("/u/navigator/link/top", {
+        id: linkId
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+function delete_catalog(catalogId) {
+    $msg.hide();
+    $('#_delete_catalog_dialog').modal();
+    $("#_delete_catalog_request").click(function () {
+        $.post("/u/navigator/catalog/delete", {
+            id: catalogId
+        }, function (data) {
+            if (data.code == 0) {
+                window.location.reload();
+            } else {
+                $msg.show();
+                $msg.find("#content").text(data.msg);
+            }
+        });
+    });
+}
+
+function up_catalog(catalogId) {
+    $msg.hide();
+    $.post("/u/navigator/catalog/up", {
+        id: catalogId
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+function down_catalog(catalogId) {
+    $msg.hide();
+    $.post("/u/navigator/catalog/down", {
+        id: catalogId
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+
+function create_catalog(id, title) {
+    var $catalog = $("#create_catalog_dialog");
+    $catalog.find("#catalog_title").val(title);
+    $catalog.find("#catalog_id").val(id);
+    $catalog.modal();
+    $msg.hide();
+}
+
+function create_link(id, catalogId, name, url) {
+    var $link = $("#create_link_dialog");
+    $link.find("#link_name").val(name);
+    $link.find("#link_id").val(id);
+    $link.find("#link_url").val(url);
+    $link.find("#link_catalog_id").val(catalogId);
+    $link.modal();
+    $msg.hide();
+}
+
+
+
+
+
+
+
+
+
+
+//添加分类确认按钮点击发生事件
+function _create_catalog_request() {
+    var $catalog = $("#create_catalog_dialog");//查找添加分类框
+    $.post("/u/navigator/catalog/modify", {
+        id: $catalog.find("#catalog_id").val(),//分类下面的input输入框
+        title: $catalog.find("#catalog_title").val()
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $link.modal("hide");
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+
+function _create_link_request() {
+    var $link = $("#create_link_dialog");
+    $.post("/u/navigator/link/modify", {
+        id: $link.find("#link_id").val(),
+        catalogId: $link.find("#link_catalog_id").val(),
+        name: $link.find("#link_name").val(),
+        url: $link.find("#link_url").val()
+    }, function (data) {
+        if (data.code == 0) {
+            window.location.reload();
+        } else {
+            $link.modal("hide");
+            $msg.show();
+            $msg.find("#content").text(data.msg);
+        }
+    });
+}
+function navigator_update() {
+    $.post("/u/navigator/update", function (data) {
+        $msg.show();
+        $msg.find("#content").html(data.msg);
+    });
+}
+</script>
+
+</section>
+</div>
+
+<!--//主体部分-->
+
+</div>
+
+<div ng-include="'../public/footer.html'"></div>
+
+<!--//main-->
+
+<script src="./navigator_files/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./navigator_files/messages_bs_zh.js" type="text/javascript"></script>
+<script src="./navigator_files/bootstrap.min.js" type="text/javascript"></script>
+<script src="./navigator_files/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<script src="./navigator_files/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6f928e7a73f54f27c24c23689c1e94b0";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>

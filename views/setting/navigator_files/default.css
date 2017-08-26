@@ -1,0 +1,328 @@
+/* header */
+#content {
+    padding: 15px;
+    min-height: 320px;
+}
+
+#header {
+    float: left;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
+#header #nav-logo {
+    padding: 8px 0 0 4px;
+    float: left;
+}
+
+#header #nav-logo img {
+    height: 32px;
+}
+
+#header #nav-title {
+    font-size: 14px;
+    padding-top: 15px;
+    margin-left: 22px;
+    float: left;
+}
+
+#header .navbar-header {
+    padding: 0 20px 0 20px;
+    min-height: 48px;
+}
+
+#header h1 a {
+    color: #658A16;
+    text-decoration: none
+}
+
+#header h1 small {
+    color: #BACE87;
+}
+
+#header ul.nav li a {
+    line-height: 25px;
+}
+
+/* footer */
+#footer {
+    margin-top: 15px;
+    padding: 15px 0px 15px 0px;
+    font-size: 95%;
+    text-align: center;
+    border-top: 2px solid #658A16;
+}
+
+#footer a {
+    color: #999;
+}
+
+.chart-row {
+    padding: 30px 50px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > td {
+    text-align: center;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.table > thead > tr > th, .table > tbody > tr:first-child > td {
+    border: 0;
+    padding-bottom: 10px;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th,
+.table > thead > tr > td, .table > thead > tr > th {
+    padding: 8px;
+    line-height: 1.42857143;
+    border-top: 0px solid #ddd;
+}
+
+.alert {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.custom-navbar {
+    background-color: #ffffff;
+    border-width: 0px;
+    border-radius: 0px;
+}
+
+.custom-navbar .container-fluid {
+    padding: 0px;
+}
+
+.custom-navbar .navbar-right {
+    margin-right: 0px;
+}
+
+.modal-header, .modal-footer {
+    border-bottom: 0px;
+    border-top: 0px;
+}
+
+.menu {
+    border-right: 1px solid #ddd;
+}
+
+.page-header {
+    margin: 20px 0 20px;
+    padding-left: 10px;
+}
+
+.action-btns {
+    margin-top: 40px;
+}
+
+.system-input {
+    margin-top: 20px;
+}
+
+form {
+    margin-top: 10px;
+}
+
+.link_list {
+    padding: 2px 5px 2px 5px;
+    float: left;
+    width: 100%;
+}
+
+.link_list .link_content {
+    float: left;
+    width: 94%;
+    padding-left: 3px;
+}
+
+.action .link_list .link_content {
+    width: 80%;
+    padding-left: 10px;
+}
+
+.link_list .link_content .link {
+    line-height: 28px;
+    float: left;
+    padding: 0 14px 0 14px;
+    text-align: right;
+    color: #333;
+}
+
+.home .link_list .link_content .link {
+    line-height: 28px;
+    float: left;
+    padding: 0 28px 0 0;
+    text-align: right;
+    color: #333;
+}
+
+.link_list .link_content .link a {
+    color: #333;
+}
+
+.link_list .link_content .link:first-child {
+    padding-left: 0;
+}
+
+.link_list .link_content .link a:hover {
+    color: #337ab7;
+}
+
+.link_list .link_title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #337ab7;
+    float: left;
+    width: 6%;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+    padding: 3px 0 3px 0;
+}
+
+.link_action {
+    float: right;
+}
+
+.catalog {
+    margin: 0 0 18px 0;
+}
+
+.modal-body {
+    padding-left: 18px;
+}
+
+.modal-body .control-label {
+    padding-right: 20px;
+    padding-left: 18px;
+}
+
+.modal-header {
+    padding: 18px 18px 15px 18px;
+}
+
+.modal-footer {
+    padding-right: 18px;
+}
+
+.form .modal-footer {
+    text-align: left;
+    padding: 0 88px 20px 88px;
+}
+
+.keyword {
+    float: left;
+    padding-right: 40px;
+    padding-left: 15px;
+}
+
+.keyword .btn {
+    margin: 0 5px 12px 0;
+    border-radius: 17px;
+}
+
+.home .search {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.home .search form {
+    margin-top: 0;
+}
+
+.home .search ul.typeahead {
+    width: 100%;
+}
+
+.search .dropdown-menu {
+    min-width: 0;
+}
+
+.home .search .dropdown-menu li a {
+    line-height: 28px;
+}
+
+.home .search input.typeahead {
+    border-radius: 21px;
+    padding-left: 20px;
+    height: 42px;
+    padding-right: 140px;
+}
+
+.search .btn, .home .search .btn:active, .home .search .btn:focus {
+    border: 0;
+    background-color: transparent;
+}
+
+.home .search .btn, .home .search .btn:active, .home .search .btn:focus {
+    height: 40px;
+}
+
+.home .search #search_btn {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.search .btn-group .dropdown-toggle {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.home .search #form-content {
+    position: relative;
+    height: 42px;
+}
+
+.home .search #form-content #input {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.home .search #form-content #button {
+    right: 22px;
+    top: 1px;
+    position: absolute;
+    z-index: 2;
+}
+
+.u_navigator .search, .u_search .search {
+    padding-left: 18px;
+}
+
+.u_navigator .search ._label, .u_search .search ._label {
+    line-height: 32px;
+}
+
+.u_navigator .search button span:first-child, .u_search .search button span:first-child {
+    padding-left: 10px;
+}
+
+.u_search {
+    padding-bottom: 10px;
+    padding-right: 18px;
+}
+
+.u_search form {
+    margin-top: 0;
+}
+
+.notice {
+    display: inline-block;
+    margin: 2px 0 0 2px;
+    width: 6px;
+    height: 6px;
+    background-color: #fd8582;
+    border-radius: 3px;
+    vertical-align: top;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-box-shadow: #fd8582 0 0 3px;
+    -moz-box-shadow: #fd8582 0 0 3px;
+    box-shadow: #fd8582 0 0 3px;
+}
+
+

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/*==========================  我的笔记  ==========================*/
+/* line 11, ../sass/notes.scss */
+.notes {
+  width: 1080px;
+  margin: 0 auto;
+}
+/* line 14, ../sass/notes.scss */
+.notes > div {
+  background: #fff;
+  border: 1px solid red;
+}
+/* line 19, ../sass/notes.scss */
+.notes .notes-nav li {
+  width: 150px;
+  text-align: center;
+  float: left;
+  height: 64px;
+  line-height: 64px;
+}
+/* line 24, ../sass/notes.scss */
+.notes .notes-nav li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 29, ../sass/notes.scss */
+.notes .notes-nav li:hover {
+  background: #eaeaea;
+}
+
+/*==========================  //我的笔记  ==========================*/
+/*==========================  //我的笔记  ==========================*/
+/*==========================  //我的笔记  ==========================*/
+
+/*# sourceMappingURL=notes.css.map */

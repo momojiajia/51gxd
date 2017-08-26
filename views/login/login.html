@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+    <!--plugin css-->
+    <link href="../../plugin/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <!--<link href="bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet">-->
+    <!--//plugin css-->
+
+    <!--custom css start-->
+    <link href="../../stylesheets/common.css" rel="stylesheet" />
+    <link href="../../stylesheets/login.css" rel="stylesheet" />
+    <!--custom css end-->
+
+    <script src="../../js/angular.min.js"></script>
+
+
+</head>
+<body ng-app="">
+
+    <!--头部开始-->
+    <div ng-include="'../public/login_header.html'"></div>
+
+    <!--main  start-->
+    <div class="contain">
+
+        <div class="l_login">
+            <h4>登录我的个性导航</h4>
+            <form>
+                <input class="l_text" type="text" placeholder="手机号/邮箱" id="text_telphone" />
+                <input class="l_password" type="password" placeholder="密码" autocomplete="new-password" id="text_password" />
+                <input class="btn btn-danger" type="button" value="登录" />
+                <div class="clear l_login_more">
+                    <label class="fl" for="remind_me">
+                        <input id="remind_me" type="checkbox" />记住用户名</label>
+                    <div class="fr"><a href="find_password1.html">忘记密码</a><span>|</span><a class="rf3203e " href="register.html">免费注册</a></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!--main end-->
+
+    <div ng-include="'../public/login_footer.html'"></div>
+    <!--footer  end-->
+
+
+<script src="../../js/jquery.js"></script>
+<script src="../../plugin/layer/layer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>个性导--个性导航</title>
+    <link rel="icon" href="../../images/icon/icon.ico"/>
+    <!--plugin css-->
+    <link href="../../plugin/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <!--//plugin css-->
+
+    <!--custom css-->
+    <link rel="stylesheet" href="../../stylesheets/common.css"/>
+    <link rel="stylesheet" href="../../stylesheets/public.css"/>
+    <link rel="stylesheet" href="../../stylesheets/custom.css"/>
+    <!--//custom css-->
+    <script src="../../js/jquery.js" type="text/javascript"></script>
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body  ng-app="grace">
+
+<div class="container">
+
+<header id="header">
+    <div class="fl">
+        <a href="../index.html">我的个性导航</a>
+        <a href="#">设为主页</a>
+        <a href="./../notes/index.html">我的笔记</a>
+    </div>
+    <div class="fr" id="user-name">
+        <a href="../about/about.html" target="_blank">欢迎您，茉茉家家</a>
+        <div id="user">
+            <div class="user-img"><a target="_blank" href="../about/about.html"><img src="../../images/src/icon.jpg" alt="用户图片"/></a></div>
+            <h3>茉茉家家</h3>
+            <a class="user-btn" href="../setting/setting.html">编辑导航</a>
+            <a class="user-btn" href="../user/user.html">个人中心</a>
+        </div>
+    </div>
+</header>
+
+<!--搜索部分-->
+<section id="search">
+    <form action="http://www.baidu.com/baidu" target="_blank">
+        <label>
+            <input type="search" class="search_text" name=word  placeholder="搜你想搜"/>
+            <input type="submit" class="search_btn" value="百度搜索">
+            <!--<button>百度一下</button>-->
+        </label>
+    </form>
+
+</section>
+<!--//搜索部分-->
+
+<!--网页主体部分-->
+<section id="main">
+<nav>
+    <ul class="navs_clicks" id="navs_list" ng-controller="navController">
+        <li class="item-{{$index}}" ng-repeat="data in navs"><a href="{{data.href}}" ng-bind="data.text"></a></li>
+    </ul>
+</nav>
+<div class="items" ng-controller="itemsController">
+
+    <div class="item item-0" id="{{item.id}}" ng-repeat="item in items">
+        <h2>{{item.title}}<span class="setting">编辑</span></h2>
+        <ul class="gxd gxdgroll">
+            <li ng-repeat="smi in item.item"><a target="_blank" rel="nofollow" href="{{smi.href}}"><b ng-bind="smi.text"></b><br>{{smi.tips}}</a></li>
+            <li class="add-item"><button>添 加</button></li>
+        </ul>
+
+    </div>
+
+</div>
+</section>
+<!--//网页主体部分-->
+
+<!--侧边更多分享-->
+<div id="side" ng-controller="shareController">
+    <span>分享到</span>
+    <ul>
+        <li ng-repeat="s in share"><a href="{{s.href}}" ng-bind="s.text"></a></li>
+    </ul>
+</div>
+<!--//侧边更多分享-->
+
+<ng-include src="'../public/footer.html'"></ng-include>
+
+<div class="actGotop" id="backtop" style="display: block;">
+    <a href="javascript:;" title="返回顶部"></a>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    var app = angular.module('grace',[]);
+/*    app.controller('mainController',function(){
+
+    });*/
+    app.controller('navController',function($scope){
+        $scope.navs = [
+            {'href':'#0','text':'world文档'},
+            {'href':'#1','text':'js特殊处理'},
+            {'href':'#2','text':'css 效果'},
+            {'href':'#3','text':'scss&compass'},
+            {'href':'#4','text':'兼容性'},
+            {'href':'#5','text':'插件'},
+            {'href':'#6','text':'框架'}
+        ]
+    });
+    app.controller('itemsController',function($scope){
+
+        $scope.items = [
+            {'id':'0','title':'world文档笔记','item':[
+                {'href':'#1111','text':'html5'},
+                {'href':'#','text':'css3'},
+                {'href':'#','text':'js'},
+                {'href':'#','text':'jq'},
+                {'href':'#','text':'scss'},
+                {'href':'#','text':'angular'},
+                {'href':'syllabus.html','text':'课程大纲'}
+            ]},
+            {'id':'1','title':'js特殊处理','item':[
+                {'href':'#1111','text':'wow 滚动'},
+                {'href':'#','text':'下拉查找'},
+                {'href':'#','text':'div 模拟select'},
+                {'href':'#','text':'div 模拟checkbox'}
+            ]},
+            {'id':'2','title':'css效果','item':[
+                {'href':'#1111','text':'旋转动画'},
+                {'href':'#','text':'css写三角形'},
+                {'href':'#','text':'css写多变形'},
+                {'href':'#','text':'条纹背景'}
+            ]},
+            {'id':'3','title':'scss&compass','item':[
+                {'href':'#1111','text':'scss安装'},
+                {'href':'#','text':'scss调试'},
+                {'href':'#','text':'compass雪碧图'},
+                {'href':'#','text':'compass雪碧图'}
+            ]},
+            {'id':'4','title':'兼容性','item':[
+                {'href':'#1111','text':'让ie最高版本读取'}
+            ]},
+            {'id':'5','title':'插件','item':[
+                {'href':'../../notes/plugin/bidu-map/index.html','text':'地图插件',"tips":"兼容很多浏览器"},
+                {'href':'https://www.hcharts.cn/demo/highcharts"','text':'图表插件'},
+                {'href':'http://layer.layui.com/','text':'弹窗插件'},
+                {'href':'../../notes/plugin/compiler/index.html','text':'小型编辑器插件'},
+                {'href':'http://www.dowebok.com/93.html','text':'幻灯片插件'},
+                {'href':'http://validform.rjboy.cn','text':'验证插件'}
+            ]},
+            {'id':'6','title':'框架','item':[
+                {'href':'#1111','text':'sui'},
+                {'href':'#','text':'bootstrap'}
+            ]}
+
+        ]
+    });
+    app.controller('shareController',function($scope){
+        $scope.share = [
+            {'href':'http://www.baidu.con','text':'新浪微博'},
+            {'href':'#1','text':'QQ空间'},
+            {'href':'#2','text':'朋友圈'},
+            {'href':'#3','text':'发送给朋友'},
+            {'href':'#4','text':'人人网'},
+            {'href':'#5','text':'新浪'}
+        ]
+    });
+
+    $(document).ready(function () {
+
+        var headerh = parseInt($('#header').height());
+//            var searchh = parseInt($('#search').height());
+
+        //导航点击链接
+        $(".navs_clicks a").click(function () {
+            var href = $(this).attr("href");
+            var top = $(href).position().top+28;
+            $(this).blur();
+            $("body,html").animate({scrollTop: top}, 500);
+//                console.log($(href).offset().top);
+            return false;
+        });
+
+//            固定搜索栏
+        $(window).scroll(function () {
+            if ($(this).scrollTop() < headerh) {
+//                    console.log(1);
+                $('#search').removeClass('fixed');
+            }
+            else {
+//                    console.log(2);
+                $('#search').addClass('fixed');
+//                    $('#main nav').css('top','auto');
+
+            }
+
+        });
+
+//            固定左侧导航
+//            var navh = parseInt($('#navs_list').height());
+//            var windowh = parseInt($(window).height());
+        var iTop = parseInt($('#main').position().top);
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() < iTop) {
+
+                $('#main').removeClass('fixed');
+            }
+            else {
+
+                $('#main').addClass('fixed');
+
+            }
+
+        });
+        //返回头部
+        $("#backtop").hide();
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#backtop').fadeIn();
+            }else {
+                $('#backtop').fadeOut();
+            }
+
+        });
+        $('#backtop').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 500);
+        });
+
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">　　　　<!--设置按照edge浏览器渲染方式渲染-->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!--//设置页面宽度，缩放比例，用户不能缩放-->
+    <title>注册</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <style>
+        input {
+            outline: none;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtr">
+    <div class="container">
+        <h2 class="text-center">注册系统</h2>
+        <div class="row">
+            <form name="myForm" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-xs-3 col-xs-offset-1">
+                        <lable for="username">用户名：</lable>
+                    </div>
+                    <div class="col-xs-8">
+                        <input id="username" type="text" ng-model="data.username" name="username" ng-required="true"> <!--//ng-required="true"是设置输入框内必须填写内容，下同-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-3 col-xs-offset-1">
+                        <lable for="tel">电话：</lable>
+                    </div>
+                    <div class="col-xs-8">
+                        <input id="tel" type="text" ng-model="data.tel" name="tel" ng-pattern="/^1\d{10}$/" ng-required="true"><!-- //ng-pattren="/XXX/"是设置正则验证，下同-->
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-3 col-xs-offset-1">
+                        <lable for="address">地址：</lable>
+                    </div>
+                    <div class="col-xs-8">
+                        <input id="address" type="text" ng-model="data.address" name="address" ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-3 col-xs-offset-1">
+                        <lable for="email">邮箱：</lable>
+                    </div>
+                    <div class="col-xs-8">
+                        <input id="email" type="text" ng-model="data.email" name="email" ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/" ng-required="true">
+                    </div>
+                </div>
+                <div class="col-xs-8 col-xs-offset-4 text-danger" style="height:30px;overflow:hidden;">
+                    <p ng-show="myForm.username.$invalid && myForm.username.$dirty">请填写用户名</p>
+                    <p ng-show="myForm.tel.$invalid && myForm.tel.$dirty">请填写正确电话</p>
+                    <p ng-show="myForm.address.$invalid && myForm.address.$dirty">请填写地址</p>
+                    <p ng-show="myForm.email.$invalid && myForm.email.$dirty">请填写正确邮箱</p>
+                    <p ng-show="showAllErr">请填写</p>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="btn btn-success" type="submit" style="width:100%" ng-click="check()">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/angular.min.js"></script>
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtr", function($scope) {
+        $scope.data = {};  //存放用户输入的内容，便于后台调用
+        $scope.showAllErr = false; //默认不显示提示信息
+        $scope.check = function(){
+            $scope.showAllErr= $scope.myForm.$invalid; //当内容不合法时，显示内容（此时$invalid=true），可以console.log($scope);找到$invalid,$dirty,$valid,$pristine
+            if($scope.myForm.$valid){
+                console.log($scope.data); //控制台打印用户输入的内容
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

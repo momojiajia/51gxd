@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>scss</title>
+</head>
+<body>
+<div class="note-main iscss">
+    <pre>
+        _name 局部变量，不会被编译
+            同一文件下，局部文件和非局部文件不能重名
+
+
+            @import指令两大弊端
+               1放正最前端
+               2必须先下载 被引入的文件
+
+            Compass对sccss的@import做了更改
+                    @import “compass/reset”;
+
+            Normlize对reset有更好的更改
+
+            使用css原生@import的既定规则
+                1.当@import后面跟的文件名是以.css结为的时候
+            2．当@import后面跟的是http://开头的字符串时
+            3．url（）函数时
+            4.带有media queries时候
+
+
+
+            好的代码是注释占整个文件的三分之二
+
+
+            中级部分
+            通过函数
+                @minix      @inculd
+                            @extend
+
+            注意使用
+            Hsl（270,100%,50%）;
+
+
+            可以用@function来声明函数
+
+
+            一般把@minin单独存放，在@import后页面前。
+
+            类名有意义效果，
+
+            .red{
+                Color:red;
+            }
+            .error{
+            Color:red;
+            }
+
+            Minmx的默认参数  用冒号：
+             @minix height（$height:30px）{
+                Height:$height;
+            }
+
+            Extend 不可以继承一个选择器序列
+
+            响应式设计
+
+            Scss中的@media跟css中的@media区别
+
+
+            768px
+            992px
+            1200px
+
+
+            @minix height（$height:30px）{
+            @media(min-width:768px){
+                Height:50px;
+            }
+            }
+
+            @at-root{
+            }的使用 输出在外面
+
+
+            @if type-of($width) !=number{
+                宽度不是数字则发生事件
+            }
+            @if not  unitless($width){
+                Unit()
+            }@else{
+                @warn “”
+
+
+            }
+
+            Percentage($width) / 100
+
+            @each
+
+
+
+
+
+    </pre>
+</div>
+
+</body>
+</html>

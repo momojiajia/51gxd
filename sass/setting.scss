@@ -1,0 +1,74 @@
+
+@import "color";
+@import "mixin";
+
+/*----------------------------------  setting  ----------------------------------*/
+.container{
+  @at-root .gxd_main{
+    min-height: 75vh;
+    box-shadow: 0px 3px 7px $gray;
+    margin-bottom: 20px;
+
+    @at-root #set_contain{
+      //搜索等导航条目
+      .set_title{
+        //    border: 1px solid red;
+        padding: 10px 0;
+        .search{
+          .btn-group{
+            button{
+              background: none;
+              border: 1px solid $gray;
+            }
+
+          }
+        }
+        .label{
+          color: $text-color;
+        }
+        .btn_add{
+
+        }
+      }
+
+      //添加的导航条目
+      @at-root .link_list{
+        padding: 5px 0;
+        border-top: 1px dashed $gray;
+        line-height: 36px;
+        &:first-child{
+          border: none;
+        }
+        .link_title{
+          display: inline-block;
+          width: 12%;
+          padding: 0 15px;
+          font-size: 1rem;
+          font-weight: bold;
+          color: $background-deep-color;
+
+        }
+        .link_content{
+          width: 75%;
+          display: inline-block;
+          >div{
+            margin: 0 10px;
+            >a{
+              margin: 0 10px;
+            }
+          }
+        }
+        >div.btn-group{
+          width: 12%;
+          line-height: 40px;
+        }
+      }
+    }
+
+    //添加分类设置
+    @at-root .modal-content{
+      padding: 20px;
+    }
+  }
+}
+/*----------------------------------  //setting ----------------------------------*/

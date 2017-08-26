@@ -1,0 +1,45 @@
+
+@import "color";
+@import "compass";
+@import "mixin";
+@import "compass/layout";
+
+@mixin  mainshadow{
+  @include box-shadow(2px 0 4px #eaeaea);
+}
+/*==========================  我的笔记  ==========================*/
+.notes{
+  width: 1080px;
+  margin: 0 auto;
+  >div{
+    background: #fff;
+    border: 1px solid red;
+  }
+  .notes-nav{
+    li{
+      width: 150px;
+      text-align: center;
+      float: left;
+      @include height(64px);
+      a{
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      &:hover{
+        background: #eaeaea;
+      }
+    }
+  }
+
+}
+
+.note-main{
+
+}
+/*==========================  //我的笔记  ==========================*/
+/*==========================  //我的笔记  ==========================*/
+.iscss{
+
+}
+/*==========================  //我的笔记  ==========================*/
